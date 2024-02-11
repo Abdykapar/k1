@@ -1,95 +1,65 @@
-import Image from "next/image";
+"use client"
+import { Header } from "@/components/Header";
 import styles from "./page.module.css";
+import { Box, Button, Card, CardContent, Typography, CardMedia, CardActions, Container } from "@mui/material";
+import Link from "next/link";
+import { useRouter } from 'next/navigation'
+
+
+const data = [
+  {
+    id: 1,
+    name: 'Valencia',
+    image: '/valencia.jpeg',
+    text: '4 - этажный жилой комплекс с объектами СКБ и подземным автопаркингом на отведенной территории по ул. Балык-Кумар в г. Бишкек.'
+  },
+  {
+    id: 2,
+    name: 'Regency',
+    image: '/regency.png',
+    text: '15- этажный жилой дом с объектами СКБ и подземным автопаркингом на отведенной территории по ул. А. Дуйшеева 11, ул. Сухе Батора - пр. Токомбаева.'
+  },
+  {
+    id: 3,
+    name: 'Enfield',
+    image: '/enfield.png',
+    text: '8 этажный жилой дом с объектами СКБ и подземным автопаркингом на собственной территории по ул. Байтик Баатыра 55; 57.'
+  },
+  {
+    id: 4,
+    name: 'Muras Nuru',
+    image: '/mn.jpg',
+    text: 'Многофункциональный жилой комплекс  с переменной этажностью и объектами СКБ, на собственной территории в южной зоне в г. Бишкек.'
+  },
+]
 
 export default function Home() {
+  const router = useRouter()
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    <>
+      <Header />
+      <Container>
+        <main className={styles.main}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            {data.map(i => (
+              <Card key={i.id} onClick={() => router.push(`/${i.id}`)} sx={{ maxWidth: 345, minWidth: 345, cursor: 'pointer' }}>
+                <CardMedia
+                  sx={{ height: 140 }}
+                  image={i.image}
+                  title={i.name}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {i.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {i.text}
+                  </Typography>
+                </CardContent>
+              </Card>))}
+          </Box>
+        </main>
+      </Container>
+    </>
   );
 }
