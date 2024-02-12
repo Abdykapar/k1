@@ -68,7 +68,7 @@ export const valencia = [
     },
     {
         name: 'Госакт',
-        url: '/valencia/Госакт 2.12.pdf'
+        url: '/valencia/Госакт2.12.pdf'
     },
     {
         name: 'Договор о совместной деятельности',
